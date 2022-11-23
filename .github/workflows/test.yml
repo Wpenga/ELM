@@ -13,7 +13,7 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@master
       - name: Build and publish image
-        uses:  ${{ secrets.DOCKERHUB_USERNAME }}/docker_buildx@master
+        uses:  1687219868/docker_buildx@master
 #         docker/setup-buildx-action@v1
       
         with:

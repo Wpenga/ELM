@@ -5,18 +5,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build BiliHelper-personal Docker Image Build Stable Github
+    name: 构建docker
     steps:
+      - name: pull centos
+        run: docker pull centos
       - name: Checkout master
         uses: actions/checkout@master
       - name: Build and publish image
-        uses: ilteoood/docker_buildx@master
+        uses: docker/docker_buildx@master
+#         setup-buildx-action@v1
+#         ilteoood/docker_buildx@master
+      
         with:
           publish: true
-          imageName: lkeme/bilihelper-personal
+          imageName: ${{ secrets.DOCKERHUB_USERNAME }}/elmmb
           dockerFile: images/Dockerfile
           platform: linux/amd64,linux/arm64,linux/arm/v7
           # platform: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8
-          tag: latest
+          tag: 2.6
           dockerUser: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerPassword: ${{ secrets.DOCKERHUB_TOKEN }}

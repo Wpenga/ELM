@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: centos-latest
     name: 构建docker
     steps:
       - name: pull centos
@@ -12,9 +12,7 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@master
       - name: Build and publish image
-        uses: docker/docker_buildx@master
-#         setup-buildx-action@v1
-#         ilteoood/docker_buildx@master
+        uses: docker/setup-buildx-action@v1
       
         with:
           publish: true

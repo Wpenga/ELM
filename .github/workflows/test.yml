@@ -4,11 +4,12 @@ on:
 
 jobs:
   build:
-    runs-on: centos-latest
+    runs-on: ubuntu-latest
     name: 构建docker
     steps:
       - name: pull centos
         run: docker pull centos
+        
       - name: Checkout master
         uses: actions/checkout@master
       - name: Build and publish image

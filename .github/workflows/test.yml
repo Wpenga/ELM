@@ -1,1 +1,22 @@
+name: "测试构建"
+on:
+  workflow_dispatch:
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build BiliHelper-personal Docker Image Build Stable Github
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+      - name: Build and publish image
+        uses: ilteoood/docker_buildx@master
+        with:
+          publish: true
+          imageName: lkeme/bilihelper-personal
+          dockerFile: images/Dockerfile
+          platform: linux/amd64,linux/arm64,linux/arm/v7
+          # platform: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8
+          tag: latest
+          dockerUser: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerPassword: ${{ secrets.DOCKERHUB_TOKEN }}
